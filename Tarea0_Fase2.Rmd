@@ -1,5 +1,5 @@
 ---
-title: "Tarea0 Fase2"
+title: "Tarea 0 Fase 2"
 author: "Ángel Lapeña López"
 date: "`r Sys.Date()`"
 output:
@@ -50,3 +50,35 @@ language:
     remark: 'Nota: '
     solution: 'Solución. '
 ---
+
+# 1. Considera los conjuntos de datos **mammals** del
+paquete **MASS** y **Animals2** del paquete
+**robustbase**.
+
+## a) Mira la las características de ambos conjuntos usando la ayuda.
+
+```{r}
+# Primero, instalamos los paquetes.
+install.packages(c('MASS', 'robustbase')) # Note: estoy en Arch Linux y tuve que instalar un compilador de Fortran para que me funcionase robustbase: sudo pacman -S gcc-fortran
+```
+
+```{r}
+# Visualizamos los conuntos que hay en cada paquete (se abrirán en una ventana nueva)
+data(package='MASS')
+data(package='robustbase')
+```
+
+```{r}
+# Visualizamos rápidamente los conjuntos
+library('MASS')
+get('mammals')
+
+library('robustbase')
+get('Animals2')
+```
+
+```{r}
+# Usamos la ayuda para visualizar mejor los conjuntos (se abre en la ventana Help de RStudio)
+help('mammals')
+help('Animals2')
+```
