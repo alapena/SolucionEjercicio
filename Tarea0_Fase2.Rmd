@@ -130,3 +130,15 @@ colnames(datos2)
 
 # Mismas columnas
 ```
+
+## d) Usa la función **intersect** y almacena en la variable
+*commonAnimals* los aminales que aparezcan en ambos
+conjuntos
+
+```{r}
+commonAnimals <- intersect(rownames(datos1), rownames(datos2))
+length(commonAnimals)
+head(commonAnimals)
+```
+
+Hay 58 animales que aparecen en ambos conjuntos.
