@@ -197,3 +197,27 @@ diff21
 ```
 
 Ahora sí. Solamente hay tres animales que están en el conjunto 2 ("Animals2") pero no en el conjunto 1 ("mammals"): tres **dinosaurios**! Diplodocus, Triceratops y Brachiosaurus.
+
+## f) Determina las diferencia entre los animales que no aparecen en ambos
+conjuntos.
+
+```{r}
+datos2[diff21,]
+```
+
+```{r}
+datos2$ratio <- datos2$brain / datos2$body
+datos2[diff21,]
+```
+
+Para analizar las diferencias entre los animales que no aparecen en ambos conjuntos (es decir, los tres dinosaurios), he creado una columna adicional llamada "ratio" que es la división del peso del cerebro entre el peso del cuerpo.
+
+```{r}
+barplot(datos2[diff21, "ratio"], names.arg = rownames(datos2[diff21,]), ylab="Ratio brain/body weight")
+```
+
+A partir del ratio podemos observar que el Triceratops tiene un cerebro muy grande en comparación con su peso. Es el más ligero de los tres y pero no tiene el cerebro más ligero; pero en proporción a su peso sí que es enorme.
+
+El Brachiosaurus es el más pesado de los tres, tanto en cuerpo como en cerebro, pero sin embargo tiene el ratio más pequeño. Un cuerpo enorme pero un cerebro diminuto, en proporción.
+
+El Dipliodocus cae en un punto intermedio.
