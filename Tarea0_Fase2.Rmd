@@ -112,3 +112,21 @@ str(datos2)
 ```
 
 Según las funciones `tail()`, ambos conjuntos parecen tener muchas filas en común. `mammals` tiene 62 filas, mientras que `Animals2` tiene 65 filas. Mientras que `tail()` muestra el mismo output para ambos conjuntos, `head()` deja ver ya algunas filas distintas. Ambos conjuntos muestran información sobre el peso del cuerpo y del cerebro de algunos animales, y hay muchas instancias comunes en ambos.
+
+## c) Muestra los nombres de las filas y las columnas
+(**rownames**, **colnames**)
+
+```{r}
+rownames(datos1)
+```
+
+```{r}
+rownames(datos2)
+```
+
+```{r}
+colnames(datos1)
+colnames(datos2)
+
+# Mismas columnas
+```
