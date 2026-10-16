@@ -52,8 +52,8 @@ language:
 ---
 
 # 1. Considera los conjuntos de datos **mammals** del
-paquete **MASS** y **Animals2** del paquete
-**robustbase**.
+
+paquete **MASS** y **Animals2** del paquete **robustbase**.
 
 ## a) Mira la las características de ambos conjuntos usando la ayuda.
 
@@ -82,3 +82,33 @@ get('Animals2')
 help('mammals')
 help('Animals2')
 ```
+
+## b) Usa las funciones **dim, head, tail, str** para una
+
+primera visión de los conjuntos de datos.
+
+```{r}
+
+datos1 <- get('mammals')
+datos2 <- get('Animals2')
+
+dim(datos1)
+dim(datos2)
+```
+
+```{r}
+head(datos1)
+head(datos2)
+```
+
+```{r}
+tail(datos1)
+tail(datos2)
+```
+
+```{r}
+str(datos1)
+str(datos2)
+```
+
+Según las funciones `tail()`, ambos conjuntos parecen tener muchas filas en común. `mammals` tiene 62 filas, mientras que `Animals2` tiene 65 filas. Mientras que `tail()` muestra el mismo output para ambos conjuntos, `head()` deja ver ya algunas filas distintas. Ambos conjuntos muestran información sobre el peso del cuerpo y del cerebro de algunos animales, y hay muchas instancias comunes en ambos.
