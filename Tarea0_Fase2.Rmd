@@ -59,7 +59,7 @@ paquete **MASS** y **Animals2** del paquete **robustbase**.
 
 ```{r}
 # Primero, instalamos los paquetes.
-install.packages(c('MASS', 'robustbase')) # Note: estoy en Arch Linux y tuve que instalar un compilador de Fortran para que me funcionase robustbase: sudo pacman -S gcc-fortran
+# install.packages(c('MASS', 'robustbase')) # Note: estoy en Arch Linux y tuve que instalar un compilador de Fortran para que me funcionase robustbase: sudo pacman -S gcc-fortran
 ```
 
 ```{r}
@@ -142,3 +142,58 @@ head(commonAnimals)
 ```
 
 Hay 58 animales que aparecen en ambos conjuntos.
+
+## e) Usa **setdiff** para averiguar qué animales no están en
+ambos conjuntos. ¿Cuántos son ? ¿Qué tipo de animales son?
+
+```{r}
+diff12 <- setdiff(rownames(datos1), rownames(datos2))
+diff21 <- setdiff(rownames(datos2), rownames(datos1))
+
+diff12
+diff21
+```
+
+En primer lugar, hay dos animales que sí que estan en ambos conjuntos pero que hasta ahora no habíamos detectado: "Arctic fox" y "Arctic ground squirrel". Debido a que la palabra "Arctic" está escrita de forma diferente en ambos conjuntos: "Arctic" en el conjunto "mammals" y "Artic" en el conjunto "Animals2".
+
+Algo similar ocurre con "Potar monkey" y "Mole rat". En el otro dataset aparecen como "Patas monkey" y "Mole", pero son el mismo animal. Podemos confirmar todo esto viendo que coinciden sus datos de peso:
+
+```{r}
+c(
+  all.equal(as.numeric(datos1["Arctic fox",]), as.numeric(datos2["Artic fox",])),
+  all.equal(as.numeric(datos1["Arctic ground squirrel",]), as.numeric(datos2["Artic ground squirrel",])),
+  all.equal(as.numeric(datos1["Patas monkey",]), as.numeric(datos2["Potar monkey",])),
+  all.equal(as.numeric(datos1["Mole rat",]), as.numeric(datos2["Mole",]))
+)
+```
+
+Esto hace que la respuesta del apartado anterior sea incorrecta. Vamos a corregir esto y a dar una solución a ambos apartados.
+
+```{r}
+# Elegimos uno de los dos nombres
+rownames(datos2)[rownames(datos2) == "Artic fox"] <- "Arctic fox"
+rownames(datos2)[rownames(datos2) == "Artic ground squirrel"] <- "Arctic ground squirrel"
+rownames(datos2)[rownames(datos2) == "Potar monkey"] <- "Patas monkey"
+rownames(datos2)[rownames(datos2) == "Mole"] <- "Mole rat"
+
+```
+
+```{r}
+# Repetimos apartado d)
+commonAnimals <- intersect(rownames(datos1), rownames(datos2))
+length(commonAnimals)
+```
+
+Ahora vemos que el número de animales comunes ha aumentado en cuatro unidades: hay realmente 62 animales comunes.
+
+```{r}
+# Repetimos apartado e)
+diff12 <- setdiff(rownames(datos1), rownames(datos2))
+diff21 <- setdiff(rownames(datos2), rownames(datos1))
+
+length(diff12)
+length(diff21)
+diff21
+```
+
+Ahora sí. Solamente hay tres animales que están en el conjunto 2 ("Animals2") pero no en el conjunto 1 ("mammals"): tres **dinosaurios**! Diplodocus, Triceratops y Brachiosaurus.
